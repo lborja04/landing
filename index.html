@@ -1046,7 +1046,7 @@
                       <h3
                         class="text-sm font-semibold text-body-light-11 dark:text-body-dark-11"
                       >
-                        Angelica Navarro
+                        Angélica Navarro
                       </h3>
                       <p
                         class="text-xs text-body-light-10 dark:text-body-dark-10"
@@ -1212,7 +1212,7 @@
                   </p>
                 </div>
 
-                <form action="#" method="POST" class="flex flex-col gap-6">
+                <form id="form_voting" action="#" method="POST" class="flex flex-col gap-6">
                   <div class="row">
                     <div class="col-12 md:col-6">
                       <input
@@ -1245,13 +1245,19 @@
                     </div>
 
                     <div class="col-12 md:col-6">
-                      <input
-                        type="text"
+                      <select
                         name="subject"
                         class="block w-full px-5 py-3 rounded-md border border-solid border-alpha-light dark:border-alpha-dark text-inherit text-base focus:border-primary"
-                        placeholder="Asunto"
                         required
-                      />
+                      >
+                        <option value="" disabled selected>Seleccione un asunto</option>
+                        <option value="Interés en comprar">Interés en comprar</option>
+                        <option value="Consulta técnica">Consulta técnica</option>
+                        <option value="Problemas con un pedido">Problemas con un pedido</option>
+                        <option value="Reembolso">Reembolso</option>
+                        <option value="Soporte postventa">Soporte postventa</option>
+                        <option value="Otro">Otro</option>
+                      </select>
                     </div>
 
                     <div class="col-12">

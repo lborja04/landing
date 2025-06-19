@@ -1,5 +1,9 @@
 "use strict";
 
+// main.js o main.ts (en src/)
+import { saveContactMessage } from './firebase.js';
+
+
 // Page loading
 var pageLoading = document.querySelector(".page-loading");
 
@@ -247,3 +251,32 @@ if (st) {
     });
   });
 }
+
+
+
+function enableContactForm() {
+  const form = document.querySelector('#form_voting'); // O usa otro id si cambias el nombre
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const phone = form.querySelector('[name="phone"]').value.trim();
+    const subject = form.querySelector('[name="subject"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
+
+    const formData = { name, email, phone, subject, message };
+
+    const result = await saveContactMessage(formData);
+    alert(result.message);
+
+    if (result.success) {
+      form.reset();
+    }
+  });
+}
+
+// Ejecutar cuando cargue el script
+enableContactForm();
