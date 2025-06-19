@@ -2,7 +2,7 @@
 
 // main.js o main.ts (en src/)
 import { saveContactMessage } from './firebase.js';
-
+import { getTestimonials } from './firebase.js';
 
 // Page loading
 var pageLoading = document.querySelector(".page-loading");
@@ -280,3 +280,31 @@ function enableContactForm() {
 
 // Ejecutar cuando cargue el script
 enableContactForm();
+
+function renderTestimonials(testimonials) {
+  const container = document.getElementById('testimonial-list');
+
+  Object.values(testimonials).forEach(({ mensaje, nombre, profesion, avatar }) => {
+    const li = document.createElement('li');
+    li.className = 'swiper-slide';
+
+    li.innerHTML = `
+      <div class="rounded-xl bg-body-light-1 dark:bg-body-dark-12/10 px-5 py-8 shadow-card-2 sm:px-8">
+        <p class="mb-6 text-base text-body-light-11 dark:text-body-dark-11">
+          “${mensaje}”
+        </p>
+        <figure class="flex items-center gap-4">
+          <figcaption class="flex-grow">
+            <h3 class="text-sm font-semibold text-body-light-11 dark:text-body-dark-11">${nombre}</h3>
+            <p class="text-xs text-body-light-10 dark:text-body-dark-10">${profesion}</p>
+          </figcaption>
+        </figure>
+      </div>
+    `;
+
+    container.appendChild(li);
+  });
+}
+
+// Ejecutar al cargar
+getTestimonials().then(renderTestimonials);
